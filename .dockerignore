@@ -1,0 +1,6 @@
+.git
+docker
+database
+*.md
+*.sql
+*.log

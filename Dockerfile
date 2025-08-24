@@ -11,8 +11,8 @@ COPY . /var/www/html
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Ensure Apache serves index.php by default
-RUN echo "DirectoryIndex index.php" >> /etc/apache2/apache2.conf
+# Ensure Apache serves index.php and index.html by default
+RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80

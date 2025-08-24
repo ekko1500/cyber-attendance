@@ -4,15 +4,23 @@ FROM php:8.0-apache
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy only src/ into container web root
+# Copy src/ into container web root
 COPY ./src/ /var/www/html/
 
-# Install needed PHP extensions
+# Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Ensure Apache serves index.php by default
-RUN echo "<IfModule mod_dir.c>\n    DirectoryIndex index.php index.html\n</IfModule>" > /etc/apache2/conf-available/docker-php.conf \
-    && a2enconf docker-php
+# Enable Apache PHP module
+RUN a2enmod php8.0
+
+# Ensure Apache serves PHP files
+RUN echo "<IfModule mime_module>\n\
+    AddType application/x-httpd-php .php\n\
+</IfModule>\n\
+<IfModule dir_module>\n\
+    DirectoryIndex index.php index.html\n\
+</IfModule>" > /etc/apache2/conf-available/php.conf \
+    && a2enconf php
 
 # Fix permissions
 RUN chown -R www-data:www-data /var/www/html

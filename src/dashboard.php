@@ -17,7 +17,7 @@
 // } catch (PDOException $e) {
 //     die("Database connection failed: " . $e->getMessage());
 // }
-require_once('../db/connection.php');
+require_once('./db/connection.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

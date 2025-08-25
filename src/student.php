@@ -98,7 +98,6 @@ $students = $stmt->fetchAll();
 </style>
 </head>
 <body class="bg-light">
-
 <?php include 'navbar.php'; ?>
 <?php include 'sidebar.php'; ?>
 
